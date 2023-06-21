@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>App ABCC Escolares</title>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-md bg-dark navbar-dark">
+  <!-- Brand -->
+  <a class="navbar-brand" href="#">APP Escolares</a>
+
+  <!-- Toggler/collapsibe Button -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <!-- Navbar links -->
+  <div class="collapse navbar-collapse" id="collapsibleNavbar">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link"  href="" >Alumnos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="">Docentes</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+	<div class ="container">
+		<div class = "row">
+			<h1> Listado de Alumnos </h1>
+		</div>
+		
+		<div class = "row">
+			<div class = "col-lg-3">
+				<a th:href="@{/alumnos/crear}" class = "btn btn-info btn-sm mb-3"> Agregar Alumno </a>
+			</div>
+		</div>
+		<table class = "table table-striped table-bordered">
+			<thead class = "table-dark">
+				<tr>
+					<th> Num. Control</th>
+					<th> Nombre</th>
+					<th> Primer Ap.</th>
+                    <th> Segundo Ap.</th>
+                    <th> Edad</th>
+                    <th> Semestre</th>
+                    <th> Carrera</th>
+					<th> ACCIONES </th>
+				</tr>
+			</thead>
+			
+			<tbody>
+				<tr th:each = "a : ${alumnos}">
+                    <td th:text="${a.numControl}"></td>
+                    <td th:text="${a.nombre}"></td>
+                    <td th:text="${a.primerAp}"></td>
+                    <td th:text="${a.segundoAp}"></td>
+                    <td th:text="${a.edad}"></td>
+                    <td th:text="${a.semestre}"></td>
+                    <td th:text="${a.carrera}"></td>
+					<td>
+						<a th:href="@{/alumnos/editar/{id}(id=${a.numControl})}" 
+						class = "btn btn-warning">Editar</a>
+						
+						<a th:href="@{/alumnos/{id}(id=${a.numControl})}"
+						 class = "btn btn-danger">Borrar</a>
+						 
+					</td>
+				</tr>
+			</tbody>
+		
+		</table>
+		
+	</div>
+</body>
+</html>
